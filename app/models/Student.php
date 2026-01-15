@@ -7,7 +7,11 @@ class Student
     {
         $this->db = Database::getInstance();
     }
-
+    public function findUserByEmail($email) {
+        $this->db->query("SELECT * FROM students WHERE email = :email");
+        $this->db->bind(' :email , $email');
+        
+    }
     public function register($name, $email, $password)
     {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
