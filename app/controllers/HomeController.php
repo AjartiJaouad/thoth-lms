@@ -1,16 +1,10 @@
 <?php
 require_once __DIR__ . '/../core/Controller.php';
 
-class HomeController
-{
 
-    private $dcontr;
-
-    public function index()
-    {
-        $this->dcontr = new Controller();
-        $data = ['title' => 'Bienvenue sur Thoth'];
-        $this->dcontr->view('home', $data);
+class HomeController extends Controller {
+    public function index() {
+        echo "<h1>Success!</h1>";
+        // $this->view('home', ['title' => 'Thoth LMS']);
     }
 }
-?>
