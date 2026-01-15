@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title; ?></title>
+    <title>Thoth LMS - Accueil</title>
 </head>
 <body>
-    <h1><?php echo $title; ?></h1>
-    <p>MVC samarch</p>
-    <a href="/login">SE concter (student)</a>
+    <h1>Bienvenue sur Thoth LMS</h1>
+
+    <?php if(isset($_SESSION['user_id'])) : ?>
+        <p>Bonjour <strong><?php echo $_SESSION['user_name']; ?></strong> !</p>
+        <a href="/logout">Se déconnecter</a>
+    <?php else : ?>
+        <p>Veuillez vous identifier :</p>
+        <a href="/login">Connexion</a> | <a href="/register">Inscription</a>
+    <?php endif; ?>
 </body>
 </html>
