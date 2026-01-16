@@ -74,4 +74,8 @@ class StudentController extends Controller
     {
         $this->view('home');
     }
+    public function dashboard()
+    {
+        $this->view('dashboard');
+    }
 }
