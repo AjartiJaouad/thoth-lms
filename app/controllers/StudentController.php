@@ -28,7 +28,7 @@ class StudentController extends Controller
             $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
             if ($this->studentModel->register($name, $email, $hashedPassword)) {
-                header('Location: /login');
+                $this->view('student/login');
                 exit;
             } else {
                 die("erouer");
@@ -48,7 +48,7 @@ class StudentController extends Controller
             if ($user && password_verify($password, $user->PASSWORD)) {
                 $_SESSION['user_id'] = $user->id;
                 $_SESSION['user_name'] = $user->name;
-                header('Location: /thoth-lms/public/student/dashboard');
+                header('Location: dashboard');
                 exit;
             } else {
                 die("le mote de pas ou lemail inccorect");
@@ -61,7 +61,11 @@ class StudentController extends Controller
     {
         session_unset();
         session_destroy();
-        header('Location: /thoth-lms/public/login');
+        header('Location: login');
         exit;
+    }
+    public function home()
+    {
+        $this->view('home');
     }
 }

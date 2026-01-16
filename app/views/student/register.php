@@ -11,7 +11,7 @@
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 class="text-2xl font-bold mb-6 text-center text-indigo-600">Créer un compte Étudiant</h2>
         
-        <form action="/thoth-lms/public/register" method="POST" class="space-y-4">
+        <form action="register" method="POST" class="space-y-4">
             
             <div>
                 <label class="block text-sm font-medium text-gray-700">Nom Complet</label>
@@ -40,7 +40,7 @@
 
         <p class="mt-4 text-center text-sm text-gray-600">
             Déjà un compte ? 
-            <a href="/thoth-lms/public/login" class="text-indigo-600 hover:underline">Connectez-vous</a>
+            <a href="login" class="text-indigo-600 hover:underline">Connectez-vous</a>
         </p>
     </div>
 

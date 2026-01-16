@@ -16,7 +16,7 @@
 <button type="submit">Se Connecter</button>
 
 </form>
-<p><a href="register.php">PAs encore de   compte ? Inscrirvez-vouus</a></p>
+<p><a href="register">PAs encore de   compte ? Inscrirvez-vouus</a></p>
 </body>
 
 </html>
