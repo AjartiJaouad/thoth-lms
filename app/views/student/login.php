@@ -8,15 +8,17 @@
 </head>
 
 <body>
-<h2>Conxion  ETUDIENT </h2>
-<form action="/register" method="post">
+    <h2>Connexion Étudiant</h2>
 
-<input type="email" name="email" placeholder="Email"require> <br><br>
-<input type="password" name="password" placeholder="MOT de passe "require> <br><br>
-<button type="submit">Se Connecter</button>
+    <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
 
-</form>
-<p><a href="register">PAs encore de   compte ? Inscrirvez-vouus</a></p>
+    <form action="/login" method="post">
+        <input type="email" name="email" placeholder="Email" required> <br><br>
+        <input type="password" name="password" placeholder="Mot de passe" required> <br><br>
+        <button type="submit">Se connecter</button>
+    </form>
+    <p><a href="/register">Pas encore de compte ? Inscrivez-vous</a></p>
+
 </body>
 
 </html>

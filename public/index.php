@@ -14,7 +14,7 @@ $router = new Router();
 $router->get('/', 'StudentController@home');
 $router->get('/register', 'StudentController@showRegister');
 $router->post('/register', 'StudentController@register');
-$router->get('/login', 'StudentController@login');
+$router->get('/login', 'StudentController@showLogin');
 $router->post('/login', 'StudentController@login');
 
 
