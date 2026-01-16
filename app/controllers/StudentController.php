@@ -1,61 +1,67 @@
 <?php
 require_once __DIR__ . '/../core/Controller.php';
-class StudentController extends Controller {
 
-    public function showRegister() {
+class StudentController extends Controller
+{
+    private $studentModel;
+
+    public function __construct()
+    {
+        require_once __DIR__ . '/../models/Student.php';
+        $this->studentModel = new Student();
+    }
+
+
+    public function showRegister()
+    {
         $this->view('student/register');
     }
 
-   
-    public function register() {
+    public function register()
+    {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $name = trim($_POST['name']);
             $email = trim($_POST['email']);
             $password = $_POST['password'];
 
-            require_once '../app/models/Student.php';
-            $studentModel = new Student();
 
-            if ($studentModel->register($name, $email, $password)) {
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+            if ($this->studentModel->register($name, $email, $hashedPassword)) {
                 header('Location: /login');
+                exit;
             } else {
-                die("Une erreur est survenue lors de l'inscription.");
+                die("erouer");
             }
         }
     }
 
-    public function login() {
+    public function login()
+    {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = trim($_POST['email']);
             $password = $_POST['password'];
 
-            require_once '../app/models/Student.php';
-            $studentModel = new Student();
-            $user = $studentModel->findUserByEmail($email);
+            $user = $this->studentModel->findUserByEmail($email);
 
-            if ($user) {
-                if (password_verify($password, $user->password)) {
-                    $_SESSION['user_id'] = $user->id;
-                    $_SESSION['user_name'] = $user->name;
-                    
-                    header('Location: /');
-                } else {
-                    echo "Mot de passe incorrect.";
-                    $this->view('student/login');
-                }
+
+            if ($user && password_verify($password, $user->PASSWORD)) {
+                $_SESSION['user_id'] = $user->id;
+                $_SESSION['user_name'] = $user->name;
+                header('Location: /thoth-lms/public/student/dashboard');
+                exit;
             } else {
-                echo "Utilisateur non trouve.";
-                $this->view('student/login');
+                die("le mote de pas ou lemail inccorect");
             }
-        } else {
-            $this->view('student/login');
         }
+        $this->view('student/login');
     }
 
-    public function logout() {
+    public function logout()
+    {
         session_unset();
         session_destroy();
-        header('Location: /login');
+        header('Location: /thoth-lms/public/login');
         exit;
     }
 }
